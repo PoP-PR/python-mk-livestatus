@@ -63,6 +63,6 @@ class Socket(object):
             rawdata = s.makefile().read()
             if not rawdata:
                 return []
-            return rawdata
+            return eval(str(rawdata))
         finally:
             s.close()
