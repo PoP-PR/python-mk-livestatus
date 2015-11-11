@@ -1,28 +1,30 @@
 Python MK Livestatus parser
 ===========================
 
-:Author: Michael Fladischer
-:Version: 0.5-dev0
+:Authors: Michael Fladischer, Paulo Telles
+:Version: 0.5-pop
 
 .. contents::
 
-Access the data returned from MK Livestatus queries as Python lists or dictionaries. 
+Access the data returned from MK Livestatus queries as a Python list of lists.
 It does this by sending queries to the MK Livestatus UNIX socket and parses the returned rows. 
 Read/write permission to the UNIX socket are required.
 
 This package is known to be compatible with Python 2.7, 3.3, 34, pypy and pypy3.
 
+This version is modified to return data from MK Livestatus queries in Python output format, then uses eval() to transform it in a list of lists.
+
 Usage
 -----
 
-Here a simple example to fetch the name and hostgroups for all servers in the UP (0) state:
+Here a simple example to fetch the name for all servers in the UP (0) state:
 
     >>> from mk_livestatus import Socket
     >>> s = Socket("/var/lib/icinga/rw/live")
-    >>> q = s.hosts.columns('name', 'groups').filter('state = 0')
+    >>> q = s.hosts.columns('name').filter('state = 0')
     >>> print q
     GET hosts
-    Columns: name groups
+    Columns: name
     Filter: state = 0
 	
 	
