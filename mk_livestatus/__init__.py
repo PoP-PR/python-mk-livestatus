@@ -3,4 +3,4 @@
 
 from .livestatus import Query, Socket
 
-__version__ = "0.5-dev0"
+__version__ = "0.5-pop"
